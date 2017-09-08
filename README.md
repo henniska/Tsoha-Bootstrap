@@ -7,4 +7,4 @@ Yleisiä linkkejä:
 
 ## Työn aihe
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Pokemon-kanta.html) 
+Projekti perustuu tähän aiheeseen: [huutokauppa](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Huutokauppa.html). Erona on, että käyttäjät itse laittavat esineitä huudettavaksi. 
