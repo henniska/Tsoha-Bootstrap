@@ -1,4 +1,4 @@
-# Tietokantasovelluksen esittelysivu
+# Huutokauppasovellus
 
 Yleisiä linkkejä:
 
