@@ -2,7 +2,7 @@
 
 Yleisiä linkkejä:
 
-* [Linkki sovellukseeni](https://www.cs.helsinki.fi)
+* [Linkki sovellukseeni](http://henniska.users.cs.helsinki.fi/huutokauppa/)
 * [Linkki dokumentaatiooni](https://github.com/henniska/Tsoha-Bootstrap/blob/master/doc/Huutokauppa%20dokumentaatio.pdf)
 
 ## Työn aihe
