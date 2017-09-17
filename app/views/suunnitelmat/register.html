@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Rekisteröidy</h1>
+
+  <form>
+    <!-- Käyttäjätunnus -->
+    <div class="form-group">
+      <label>Käyttäjätunnus</label>
+      <input class="form-control" type="text">
+    </div>
+
+    <!-- Salasanakenttä 1 -->
+    <div class="form-group">
+      <label>Salasana</label>
+      <input class="form-control" type="password">
+    </div>
+
+    <!-- Salasanakenttä 2 -->
+    <div class="form-group">
+      <label>Salasana uudestaan</label>
+      <input class="form-control" type="password">
+    </div>
+
+    <!-- Sähköposti -->
+    <div class="form-group">
+      <label>Sähköposti</label>
+      <input class="form-control" type="email">
+    </div>
+
+    <!-- Puhelin -->
+    <div class="form-group">
+      <label>Puhelinnumero</label>
+      <input class="form-control" type="text">
+    </div>
+
+    <!-- Osoite -->
+    <div class="form-group">
+      <label>Osoite</label>
+      <input class="form-control" type="text">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Rekisteröidy</button>
+  </form>
+{% endblock %}

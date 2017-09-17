@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Muokkaa profiilia</h1>
+
+  <form>
+    <!-- Käyttäjätunnus -->
+    <div class="form-group">
+      <label>Käyttäjätunnus</label>
+      <input class="form-control" value="henniska" type="text">
+    </div>
+
+    <!-- Sähköposti -->
+    <div class="form-group">
+      <label>Sähköposti</label>
+      <input class="form-control" value="henri.niskanen@helsinki.fi" type="email">
+    </div>
+
+    <!-- Puhelin -->
+    <div class="form-group">
+      <label>Puhelinnumero</label>
+      <input class="form-control" value="0400678937" type="text">
+    </div>
+
+    <!-- Osoite -->
+    <div class="form-group">
+      <label>Osoite</label>
+      <input class="form-control" value="Tähtikalliontie 6" type="text">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Tallenna</button>
+  </form>
+{% endblock %}
