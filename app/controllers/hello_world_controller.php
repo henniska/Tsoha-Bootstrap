@@ -10,7 +10,11 @@
     public static function sandbox(){
       // Testaa koodiasi täällä
       //echo 'Hello World!';
-      View::make('helloworld.html');
+      //View::make('helloworld.html');
+      $ps3 = Auction::find(1);
+      $auctions = Auction::all();
+      Kint::dump($ps3);
+      Kint::dump($auctions);
     }
 
     public static function game_list(){

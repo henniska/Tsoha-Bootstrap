@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Huutokaupattavat esineet</h1>
+
+  <p>
+    <a href="esine/uusi" class="btn btn-success">Lisää esine huutokaupattavaksi</a>
+  </p>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Alkanut</th>
+        <th>Loppuu</th>
+        <th>Alkuhinta (€)</th>
+        <th>Nykyinen tarjous</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for auction in auctions %}
+        <tr>
+          <td><a href="esine/{{auction.id}}">{{auction.item_name}}</a></td>
+          <td>{{auction.create_date}}</td>
+          <td>{{auction.end_date}}</td>
+          <td>{{auction.minimum_bid}}</td>
+          <td>-</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

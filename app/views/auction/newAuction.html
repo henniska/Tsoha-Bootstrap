@@ -2,31 +2,37 @@
 {% block content %}
   <h1>Lisää esine huutokaupattavaksi</h1>
 
-  <form>
+  <form method="post" action="{{base_path}}/esine">
     <!-- Nimi -->
     <div class="form-group">
       <label>Esineen nimi</label>
-      <input class="form-control" value="PS3 pelikonsoli" type="text">
+      <input name="item_name" class="form-control" type="text">
     </div>
 
     <!-- Loppuu -->
     <div class="form-group">
       <label>Huutokaupan loppumisaika</label>
-      <input class="form-control" value="18.9.2017 12:00" type="text">
+      <input name="end_date" class="form-control" type="text">
     </div>
 
     <!-- Alkuhinta -->
     <div class="form-group">
-      <label>Alkuhinta</label>
-      <input class="form-control" value="80€" type="text">
+      <label>Alkuhinta (€)</label>
+      <input name="minimum_bid" class="form-control" type="text">
+    </div>
+
+    <!-- Alkuhinta -->
+    <div class="form-group">
+      <label>Kuvaus</label>
+      <input name="description" class="form-control" type="text">
     </div>
 
     <!-- Kuvat -->
-    <div>
+    <!-- <div>
       <label for="file">Valitse kuvat esineelle</label>
       <input type="file" id="file" name="file" multiple>
     </div>
-    <div>
+    <div> -->
 
     </br>
 

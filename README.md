@@ -9,7 +9,7 @@ Suunnittelulinkkejä:
 
 * [Huutokauppalista](http://henniska.users.cs.helsinki.fi/huutokauppa/esine)
 * [Näytä esine](http://henniska.users.cs.helsinki.fi/huutokauppa/esine/1)
-* [Lisää esine](http://henniska.users.cs.helsinki.fi/huutokauppa/lisaaesine)
+* [Lisää esine](http://henniska.users.cs.helsinki.fi/huutokauppa/esine/uusi)
 * [Näytä profiili](http://henniska.users.cs.helsinki.fi/huutokauppa/profiili)
 * [Muokkaa profiilia](http://henniska.users.cs.helsinki.fi/huutokauppa/muokkaa-profiili)
 * [Rekisteröidy](http://henniska.users.cs.helsinki.fi/huutokauppa/register)
