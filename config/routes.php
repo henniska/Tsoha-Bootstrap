@@ -20,6 +20,15 @@
   $routes->get('/esine/:id', function($id) {
     AuctionController::show($id);
   });
+  $routes->get('/esine/:id/edit', function($id){
+    AuctionController::edit($id);
+  });
+  $routes->post('/esine/:id/edit', function($id){
+    AuctionController::update($id);
+  });
+  $routes->post('/esine/:id/destroy', function($id){
+    AuctionController::destroy($id);
+  });
 
 
   $routes->get('/profiili', function() {

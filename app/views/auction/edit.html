@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Lisää esine huutokaupattavaksi</h1>
+  <h1>Muokkaa esinettä</h1>
 
   {% if errors %}
     <div class="alert alert-danger">
@@ -12,29 +12,29 @@
     </div>
   {% endif %}
 
-  <form method="post" action="{{base_path}}/esine">
+  <form method="post" action="{{base_path}}/esine/{{auction.id}}/edit">
     <!-- Nimi -->
     <div class="form-group">
       <label>Esineen nimi</label>
-      <input name="item_name" class="form-control" type="text">
+      <input name="item_name" class="form-control" type="text" value="{{auction.item_name}}">
     </div>
 
     <!-- Loppuu -->
     <div class="form-group">
       <label>Huutokaupan loppumisaika</label>
-      <input name="end_date" class="form-control" type="text">
+      <input name="end_date" class="form-control" type="text" value="{{auction.end_date}}">
     </div>
 
     <!-- Alkuhinta -->
     <div class="form-group">
       <label>Alkuhinta (€)</label>
-      <input name="minimum_bid" class="form-control" type="text">
+      <input name="minimum_bid" class="form-control" type="text" value="{{auction.minimum_bid}}">
     </div>
 
     <!-- Alkuhinta -->
     <div class="form-group">
       <label>Kuvaus</label>
-      <input name="description" class="form-control" type="text">
+      <input name="description" class="form-control" type="text" value="{{auction.description}}">
     </div>
 
     <!-- Kuvat -->
