@@ -29,6 +29,12 @@
   $routes->post('/esine/:id/destroy', function($id){
     AuctionController::destroy($id);
   });
+  $routes->get('/login', function(){
+    UserController::login();
+  });
+  $routes->post('/login', function(){
+    UserController::handle_login();
+  });
 
 
   $routes->get('/profiili', function() {
@@ -36,9 +42,6 @@
   });
   $routes->get('/muokkaa-profiili', function() {
     HelloWorldController::muokkaa_profiili();
-  });
-  $routes->get('/login', function() {
-    HelloWorldController::login();
   });
   $routes->get('/register', function() {
     HelloWorldController::register();
