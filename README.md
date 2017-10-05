@@ -1,5 +1,8 @@
 # Huutokauppasovellus
 
+Käyttäjätunnus: test_user
+Salasana: test_password
+
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](http://henniska.users.cs.helsinki.fi/huutokauppa/)
