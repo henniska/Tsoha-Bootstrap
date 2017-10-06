@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+
+	<div><h1>Sinun tarjoukset (keskeneräinen)</h1></div>
+	<div>	
+		<ul>
+			{% for bid in bids %}
+				<li><strong>{{bid.money_value}}€ </strong><span>({{bid.create_date}})</span></li>
+			{% endfor %}
+		</ul>
+	</div>
+
+
+{% endblock %}

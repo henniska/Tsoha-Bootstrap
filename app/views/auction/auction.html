@@ -1,9 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
   {% import "macros/forms.html" as forms %}
-  <div class="alert alert-success">
-    {{message}}
-  </div>
+
+  {% if message %}
+    <div class="alert alert-success">
+      {{message}}
+    </div>
+  {% endif %}
+
+  {% if errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for error in errors %}
+          <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
 
   <h1>{{auction.item_name}}</h1>
   <p>{{auction.description}}</p>
@@ -16,13 +29,24 @@
   </div>
 
   <!-- Tiedot tulee listana tähän -->
-  <h4><strong>Suurin tarjous: </strong><span>-</span><h4>
-  <h4><strong>Alkuhinta: </strong><span>{{auction.minimum_bid}}</span><h4>
+  <h4><strong>Suurin tarjous: </strong>
+    {% if bid %}
+      <span>{{bid.money_value}}€  ({{bid_owner.username}})</span>
+    {% else %}
+      <span> - </span>
+    {% endif %}   
+  <h4>
+  <h4><strong>Alkuhinta: </strong><span>{{auction.minimum_bid}}€</span><h4>
   <h4><strong>Alkanut: </strong><span>{{auction.create_date}}</span><h4>
   <h4><strong>Loppuu: </strong><span>{{auction.end_date}}</span><h4>
 
-  <p>
-    <a href="#" class="btn btn-success">Lisää tarjous</a>
-  </p>
+
+  <form method="post" action="{{base_path}}/esine/{{auction.id}}/bid">  
+    <div class="form-group">
+      <label>Tarjous</label>
+      <input name="money_value" class="form-control" type="text">
+    </div>
+    <button type="submit" class="btn btn-success">Lisää tarjous</button>
+  </form>
 
 {% endblock %}

@@ -38,7 +38,15 @@ class AuctionController extends BaseController{
 
   	public static function show($id){
   		$auction = Auction::find($id);
-    	View::make('auction/auction.html', array('auction' => $auction));
+  		$bid = Bid::largest_by_auction($id);
+
+  		
+  		if ($bid == null) {
+  			View::make('auction/auction.html', array('auction' => $auction));
+  		} else {
+  			$bid_owner = User::find($bid->person_id);
+  			View::make('auction/auction.html', array('auction' => $auction, 'bid' => $bid, 'bid_owner' => $bid_owner));
+  		}
     }
 
     public static function edit($id){
