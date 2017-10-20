@@ -6,6 +6,7 @@ class CommentController extends BaseController{
 	    $user_logged_in = self::get_user_logged_in();
 	    $comments = Comment::find_by_person($user_logged_in->id);
 
+	    //comment_auction avulla saadaan kommenttiin liittyvä huutokauppa.
 	    $comment_auctions = array();
 	    foreach ($comments as $comment) {
 	    	$comment_auctions[$comment->id] = Auction::find($comment->auction_id);

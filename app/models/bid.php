@@ -9,6 +9,7 @@ class Bid extends BaseModel{
 		$this->validators = array('validate_money_value', 'validate_create_date', 'validate_person_id');
 	}
 
+	//löytää kaikki käyttäjän tarjoukset.
 	public static function find_by_person($id){
 		$query = DB::connection()->prepare('SELECT * FROM Bid WHERE person_id = :person_id');
 		$query->execute(array('person_id' => $id));
@@ -27,6 +28,7 @@ class Bid extends BaseModel{
 		return $bids;
 	}
 
+	//löytää kaikki huutokaupan tarjoukset.
 	public static function find_by_auction($auction_id){
 		$query = DB::connection()->prepare('SELECT * FROM Bid WHERE auction_id = :auction_id');
 		$query->execute(array('auction_id' => $auction_id));
@@ -46,6 +48,7 @@ class Bid extends BaseModel{
 		return $bids;
 	}
 
+	//Löytää suurimman huutokaupan tarjouksen.
 	public static function largest_by_auction($id){
 		$bids = self::find_by_auction($id);
 

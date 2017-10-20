@@ -29,6 +29,7 @@ class Auction extends BaseModel{
 		return $auctions;
 	}
 
+	//Löytää kaikki käyttäjän aloittamat huutokaupat.
 	public static function find_by_person($id){
 		$query = DB::connection()->prepare('SELECT * FROM Auction WHERE person_id = :person_id ORDER BY create_date DESC');
 		$query->execute(array('person_id' => $id));
@@ -49,6 +50,7 @@ class Auction extends BaseModel{
 		return $auctions;
 	}
 
+	//Löytää kaikki käyttäjän aloittamat huutokaupat (jotka ovat jo loppuneet), joihin on saatu ostaja. 
 	public static function find_by_seller_completed($id){
 		$query = DB::connection()->prepare('SELECT * FROM Auction WHERE person_id = :person_id and end_date < CURRENT_TIMESTAMP and EXISTS (SELECT 1 FROM Bid Where auction_id = Auction.id) ORDER BY end_date DESC');
 		$query->execute(array('person_id' => $id));
@@ -69,6 +71,7 @@ class Auction extends BaseModel{
 		return $auctions;
 	}
 
+	//Löytää kaikki huutokaupat (jotka ovat jo loppuneet), joihin käyttäjä laittoi suurimman tarjouksen. 
 	public static function find_by_buyer_completed($id){
 		$query = DB::connection()->prepare('SELECT * FROM Auction WHERE end_date < CURRENT_TIMESTAMP and EXISTS (SELECT 1 FROM Bid Where auction_id = Auction.id and person_id = :person_id and money_value = (SELECT max(money_value) FROM Bid WHERE auction_id = Auction.id)) ORDER BY end_date DESC');
 		$query->execute(array('person_id' => $id));

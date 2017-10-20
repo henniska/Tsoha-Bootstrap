@@ -14,12 +14,14 @@ class AuctionController extends BaseController{
   	public static function personal_index(){
   		$user_logged_in = self::get_user_logged_in();
 
+  		//Nämä ovat käyttäjän luomia huutokauppoja
 	    $auctions = Auction::find_by_person($user_logged_in->id);
 	    $bids = array();
 	    foreach ($auctions as $auction) {
 	    	$bids[$auction->id] = Bid::largest_by_auction($auction->id);
 	    }
 
+	    //Nämä ovat käyttäjän myytyjä huutokauppoja/esineitä.
 	    $sell_auctions = Auction::find_by_seller_completed($user_logged_in->id);
 	    $sell_bids = array();
 	    foreach ($sell_auctions as $auction) {
@@ -30,6 +32,7 @@ class AuctionController extends BaseController{
 	    	$buyers[$auction->id] = User::find($sell_bids[$auction->id]->person_id);
 	    }
 
+	    //Nämä ovat käyttäjän ostettuja esineitä.
 	    $buy_auctions = Auction::find_by_buyer_completed($user_logged_in->id);
 	    $buy_bids = array();
 	    foreach ($buy_auctions as $auction) {
@@ -125,8 +128,9 @@ class AuctionController extends BaseController{
 
 	public static function update($id){
 
+		//Tätä validointia ei voi käyttää huutokaupan luomisessa, koska id:ttä ei ole vielä luotu.
+		//Siksi en lisännyt sitä luokan normaaleihin validaattoreihin.
 		$bids = Bid::find_by_auction($id);
-
 		if (count($bids) > 0) {
 			$errors = array();
 			$errors[] = 'Et voi enää muokata, koska tarjouksia on annettu';
@@ -179,6 +183,7 @@ class AuctionController extends BaseController{
 	public static function destroy($id){
 		$auction = Auction::find($id);
 
+		//Vain huutokaupan luoja voi poistaa sen.
 		$errors = $auction->validate_person_id();
 
 		if (count($errors) > 0) {

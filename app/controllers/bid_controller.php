@@ -6,6 +6,7 @@ class BidController extends BaseController{
 	    $user_logged_in = self::get_user_logged_in();
 	    $bids = Bid::find_by_person($user_logged_in->id);
 
+	    //bid_auction avulla saadaan tarjoukseen liittyvä huutokauppa.
 	    $bid_auctions = array();
 	    foreach ($bids as $bid) {
 	    	$bid_auctions[$bid->id] = Auction::find($bid->auction_id);
