@@ -19,14 +19,28 @@
   {% endif %}
 
   <h1>{{auction.item_name}}</h1>
-  <p>{{auction.description}}</p>
-  <div>
-    {{forms.destroy_button("#{base_path}/esine/#{auction.id}/destroy")}}
-    {{forms.edit_button("#{base_path}/esine/#{auction.id}/edit")}}
-  </div>
-  <div>
-    <img src="http://thechurchontheway.org/wp-content/uploads/2016/05/placeholder1.png" width="600" height="400">
-  </div>
+
+  {% if show_buttons %}
+    <div>
+      {{forms.destroy_button("#{base_path}/esine/#{auction.id}/destroy")}}
+      {{forms.edit_button("#{base_path}/esine/#{auction.id}/edit")}}
+    </div>
+  {% endif %}
+
+  <br>
+  {% if auction.description %}
+    <h4><strong>Kuvaus:  </strong><span>{{auction.description}}</span></h4>
+  {% endif %}
+  
+  {% if tags %}
+    <div>
+      <h4><strong>Kategoriat:  </strong>
+      {% for tag in tags %}
+        <span>{{tag.tag_name}}, </span>
+      {% endfor %}
+      </h4>
+    </div>
+  {% endif %}
 
   <!-- Tiedot tulee listana tähän -->
   <h4><strong>Suurin tarjous: </strong>
@@ -40,13 +54,41 @@
   <h4><strong>Alkanut: </strong><span>{{auction.create_date}}</span><h4>
   <h4><strong>Loppuu: </strong><span>{{auction.end_date}}</span><h4>
 
+  <br>
+  <br>
 
-  <form method="post" action="{{base_path}}/esine/{{auction.id}}/bid">  
-    <div class="form-group">
-      <label>Tarjous</label>
-      <input name="money_value" class="form-control" type="text">
+  <div class="border">
+    <form method="post" action="{{base_path}}/esine/{{auction.id}}/bid">  
+      <div class="form-group">
+        <label>Tarjous</label>
+        <input name="money_value" class="form-control" type="text">
+      </div>
+      <button type="submit" class="btn btn-success">Lisää tarjous</button>
+    </form>
+  </div>
+
+  <br>
+
+  {% for comment in comments %}
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading"><small>{{comment_owners[comment.id].username}}</small></div>
+          <div class="panel-body">{{comment.description}}</div>
+          <div class="panel-footer text-muted"><small>{{comment.create_date}}</small></div>
+        </div>
+      </div>
     </div>
-    <button type="submit" class="btn btn-success">Lisää tarjous</button>
+  {% endfor %}
+
+  <br>
+
+  <form method="post" action="{{base_path}}/esine/{{auction.id}}/comment">  
+    <div class="form-group">
+      <label for="comment">Kommentti:</label>
+      <textarea name="description" class="form-control" rows="5" id="comment"></textarea>
+    </div> 
+    <button type="submit" class="btn btn-success">Lisää kommentti</button>
   </form>
 
 {% endblock %}

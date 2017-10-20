@@ -6,7 +6,7 @@ class Bid extends BaseModel{
 
 	public function __construct($attributes){
 		parent::__construct($attributes);
-		$this->validators = array('validate_money_value');
+		$this->validators = array('validate_money_value', 'validate_create_date', 'validate_person_id');
 	}
 
 	public static function find_by_person($id){
@@ -91,6 +91,22 @@ class Bid extends BaseModel{
 	    $this->id = $row['id'];
   	}
 
+  	public function update(){
+		$query = DB::connection()->prepare('UPDATE Bid SET (money_value) = (:money_value) WHERE id = :id');
+		$query->execute(array('money_value' => $this->money_value, 'id' => $this->id));
+		// $row = $query->fetch();
+
+		// Kint::dump($row);
+	}
+
+	public function destroy(){
+		$query = DB::connection()->prepare('DELETE FROM Bid WHERE id = :id');
+		$query->execute(array('id' => $this->id));
+		// $row = $query->fetch();
+
+		// Kint::dump($row);
+	}
+
   	//Validaattorit
 
   	public function validate_money_value(){
@@ -121,6 +137,28 @@ class Bid extends BaseModel{
 				break;
 			}
 		} 
+
+		return $errors;
+	}
+
+	public function validate_create_date(){
+		$errors = array();
+		$auction = Auction::find($this->auction_id);
+
+		if ($this->create_date > $auction->end_date) {
+			$errors[] = 'Huutokauppa on loppunut!';
+		}
+
+		return $errors;
+	}
+
+	public function validate_person_id(){
+		$errors = array();
+		$auction = Auction::find($this->auction_id);
+
+		if ($this->person_id == $auction->person_id) {
+			$errors[] = 'Et saa antaa tarjousta omalle esineelle!';
+		}
 
 		return $errors;
 	}

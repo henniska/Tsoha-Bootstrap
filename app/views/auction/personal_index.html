@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <h1>Sinun huutokaupat</h1>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Alkanut</th>
+        <th>Loppuu</th>
+        <th>Alkuhinta (€)</th>
+        <th>Nykyinen tarjous</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for auction in auctions %}
+        <tr>
+          <td><a href="esine/{{auction.id}}">{{auction.item_name}}</a></td>
+          <td>{{auction.create_date}}</td>
+          <td>{{auction.end_date}}</td>
+          <td>{{auction.minimum_bid}}€</td>
+          <td>
+            {% if bids[auction.id].money_value %}
+              {{bids[auction.id].money_value}}€
+            {% else %}
+               -
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h1>Myydyt</h1>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Ostaja</th>
+        <th>Loppunut</th>
+        <th>Myyntihinta</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for sell_auction in sell_auctions %}
+        <tr>
+          <td><a href="esine/{{sell_auction.id}}">{{sell_auction.item_name}}</a></td>
+          <td>
+            <p>Nimi: {{buyers[sell_auction.id].name}}</p>
+            <p>Käyttäjätunnus: {{buyers[sell_auction.id].username}}</p>
+            <p>Sähköposti: {{buyers[sell_auction.id].email}}</p>
+            <p>Puhelin: {{buyers[sell_auction.id].phone}}</p>
+            <p>Osoite: {{buyers[sell_auction.id].home_address}}</p>
+          </td>
+          <td>{{sell_auction.end_date}}</td>
+          <td>{{sell_bids[sell_auction.id].money_value}}€</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h1>Ostetut</h1>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Myyjä</th>
+        <th>Loppunut</th>
+        <th>Myyntihinta</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for buy_auction in buy_auctions %}
+        <tr>
+          <td><a href="esine/{{buy_auction.id}}">{{buy_auction.item_name}}</a></td>
+          <td>
+            <p>Nimi: {{sellers[buy_auction.id].name}}</p>
+            <p>Käyttäjätunnus: {{sellers[buy_auction.id].username}}</p>
+            <p>Sähköposti: {{sellers[buy_auction.id].email}}</p>
+            <p>Puhelin: {{sellers[buy_auction.id].phone}}</p>
+            <p>Osoite: {{sellers[buy_auction.id].home_address}}</p>
+          </td>
+          <td>{{buy_auction.end_date}}</td>
+          <td>{{buy_bids[buy_auction.id].money_value}}€</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+{% endblock %}

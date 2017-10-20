@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Muokkaa kommenttia</h1>
+
+  {% if errors %}
+    <div class="alert alert-danger">
+      <ul>
+        {% for error in errors %}
+          <li>{{error}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <form method="post" action="{{base_path}}/comment/{{comment.id}}/edit">
+
+    <!-- Kommentti -->
+    <div class="form-group">
+      <textarea name="description" class="form-control" rows="5" placeholder="{{comment.description}}"></textarea>
+    </div> 
+
+    </br>
+
+    <button type="submit" class="btn btn-primary">Tallenna</button>
+  </form>
+{% endblock %}

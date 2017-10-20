@@ -24,7 +24,13 @@
           <td>{{auction.create_date}}</td>
           <td>{{auction.end_date}}</td>
           <td>{{auction.minimum_bid}}€</td>
-          <td>-</td>
+          <td>
+            {% if bids[auction.id].money_value %}
+              {{bids[auction.id].money_value}}€
+            {% else %}
+               -
+            {% endif %}
+          </td>
         </tr>
       {% endfor %}
     </tbody>

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+  {% import "macros/forms.html" as forms %}
+  
+  <h1>Profiili</h1>
+
+  <div>
+    {{forms.destroy_button("#{base_path}/profile/destroy")}}
+    {{forms.edit_button("#{base_path}/profile/edit")}}
+  </div>
+
+  <br>
+  <!-- Tiedot tulee listana tähän -->
+  <div><strong>Nimi: </strong>{{user.name}}</div>
+  <div><strong>Käyttäjätunnus: </strong>{{user.username}}</div>
+  <div><strong>Sähköposti: </strong>{{user.email}}</div>
+  <div><strong>Puhelin: </strong>{{user.phone}}</div>
+  <div><strong>Osoite: </strong>{{user.home_address}}</div>
+
+{% endblock %}

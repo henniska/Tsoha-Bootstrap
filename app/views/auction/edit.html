@@ -21,7 +21,7 @@
 
     <!-- Loppuu -->
     <div class="form-group">
-      <label>Huutokaupan loppumisaika</label>
+      <label>Huutokaupan loppumisaika (yy-mm-dd hh:mm:ss)</label>
       <input name="end_date" class="form-control" type="text" value="{{auction.end_date}}">
     </div>
 
@@ -35,6 +35,20 @@
     <div class="form-group">
       <label>Kuvaus</label>
       <input name="description" class="form-control" type="text" value="{{auction.description}}">
+    </div>
+
+    <!-- Kategoriat -->
+    <div class="form-group">
+      <label>Kategoriat</label>
+      <div>
+        <select name="selected_tags[]" multiple>
+
+          {% for tag in tags %}
+            <option value="{{tag.id}}">{{tag.tag_name}}</option>
+          {% endfor %}
+
+        </select>
+      </div>
     </div>
 
     <!-- Kuvat -->

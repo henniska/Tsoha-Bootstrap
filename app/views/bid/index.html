@@ -1,14 +1,27 @@
 {% extends "base.html" %}
 {% block content %}
 
-	<div><h1>Sinun tarjoukset (keskeneräinen)</h1></div>
-	<div>	
-		<ul>
-			{% for bid in bids %}
-				<li><strong>{{bid.money_value}}€ </strong><span>({{bid.create_date}})</span></li>
-			{% endfor %}
-		</ul>
-	</div>
+	{% import "macros/forms.html" as forms %}
 
+  {% if message %}
+    <div class="alert alert-success">
+      {{message}}
+    </div>
+  {% endif %}
+
+	{% for bid in bids %}
+
+		<div>
+				<div style="display: inline-block; margin-right: 20px;">
+		    	{{forms.destroy_button("#{base_path}/bid/#{bid.id}/destroy")}}
+		    	{{forms.edit_button("#{base_path}/bid/#{bid.id}/edit")}}
+		    </div>
+				<span><strong>{{bid.money_value}}€</strong> ({{bid.create_date}}) <a href="{{base_path}}/esine/{{bid_auctions[bid.id].id}}">{{bid_auctions[bid.id].item_name}}</a>
+				</span>   
+	  </div>
+
+	  <br>
+
+	{% endfor %}
 
 {% endblock %}

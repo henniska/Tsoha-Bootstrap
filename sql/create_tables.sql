@@ -12,49 +12,37 @@ CREATE TABLE Person(
 
 CREATE TABLE Auction(
   id SERIAL PRIMARY KEY,
-  person_id INTEGER REFERENCES Person(id), -- seller
+  person_id INTEGER REFERENCES Person(id) ON DELETE CASCADE, -- seller
   item_name varchar(50) NOT NULL,
   minimum_bid INTEGER NOT NULL,
   description varchar(400),
-  create_date DATE NOT NULL,
-  end_date DATE NOT NULL
+  create_date TIMESTAMP NOT NULL,
+  end_date TIMESTAMP NOT NULL
 );
 
 CREATE TABLE Bid(
   id SERIAL PRIMARY KEY,
-  person_id INTEGER REFERENCES Person(id),
-  auction_id INTEGER REFERENCES Auction(id),
+  person_id INTEGER REFERENCES Person(id) ON DELETE CASCADE,
+  auction_id INTEGER REFERENCES Auction(id) ON DELETE CASCADE,
   money_value INTEGER NOT NULL,
-  create_date DATE NOT NULL
+  create_date TIMESTAMP NOT NULL
 );
 
 CREATE TABLE Comment(
   id SERIAL PRIMARY KEY,
-  person_id INTEGER REFERENCES Person(id),
-  auction_id INTEGER REFERENCES Auction(id),
+  person_id INTEGER REFERENCES Person(id) ON DELETE CASCADE,
+  auction_id INTEGER REFERENCES Auction(id) ON DELETE CASCADE,
   description varchar(400) NOT NULL,
-  create_date DATE NOT NULL
-);
-
-CREATE TABLE Item_image(
-  id SERIAL PRIMARY KEY,
-  auction_id INTEGER REFERENCES Auction(id),
-  data bytea NOT NULL
-);
-
-CREATE TABLE Tag_group(
-  id SERIAL PRIMARY KEY,
-  group_name varchar(50) NOT NULL
+  create_date TIMESTAMP NOT NULL
 );
 
 CREATE TABLE Tag(
   id SERIAL PRIMARY KEY,
-  tag_group_id INTEGER REFERENCES Tag_group(id),
   tag_name varchar(50) NOT NULL
 );
 
 CREATE TABLE Auction_tag(
   id SERIAL PRIMARY KEY,
-  tag_id INTEGER REFERENCES Tag(id),
-  auction_id INTEGER REFERENCES Auction(id)
+  tag_id INTEGER REFERENCES Tag(id) ON DELETE CASCADE,
+  auction_id INTEGER REFERENCES Auction(id) ON DELETE CASCADE
 );

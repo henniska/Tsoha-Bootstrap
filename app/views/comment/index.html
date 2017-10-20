@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+  {% import "macros/forms.html" as forms %}
+
+  {% if message %}
+    <div class="alert alert-success">
+      {{message}}
+    </div>
+  {% endif %}
+
+	{% for comment in comments %}
+
+		<h2>Huutokauppa:  <a href="{{base_path}}/esine/{{comment_auctions[comment.id].id}}">{{comment_auctions[comment.id].item_name}}</a></h2>
+		<div class="row">
+		  <div class="col-sm-6">
+		    <div class="panel panel-default">
+		      <div class="panel-heading"><small>{{user.username}}</small></div>
+		      <div class="panel-body">{{comment.description}}</div>
+		      <div class="panel-footer text-muted"><small>{{comment.create_date}}</small></div>
+		    </div>
+		  </div>
+		</div>
+
+		<div>
+	    {{forms.destroy_button("#{base_path}/comment/#{comment.id}/destroy")}}
+	    {{forms.edit_button("#{base_path}/comment/#{comment.id}/edit")}}
+	  </div>
+
+	  <br>
+
+	{% endfor %}
+
+{% endblock %}
