@@ -12,10 +12,10 @@
   });
 
 
-  $routes->get('/esine', 'check_logged_in', function() {
+  $routes->get('/esine', function() {
     AuctionController::index();
   });
-  $routes->post('/esine', function() {
+  $routes->post('/esine', 'check_logged_in', function() {
     AuctionController::store();
   });
   $routes->get('/esine/uusi', 'check_logged_in', function() {
